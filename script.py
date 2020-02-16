@@ -1,4 +1,4 @@
-f = open("week1.txt", "r", encoding='utf-8')
+f = open("week.txt", "r", encoding='utf-8')
 lines = f.readlines()
 items = []
 
@@ -15,11 +15,7 @@ for item in items:
     item_name = abc[0].split(' ')
     item_amout = abc[1].split(' ')
     item_amout = float(item_amout[1]) if len(item_amout) > 1 else 0
-    # print(item_name)
-    the_item_name = f"{item_name[0]} {item_name[1]}" if len(item_name) > 2 else item_name[0]
-    print(the_item_name)
-    print(item_amout)
-    print('--')
+    the_item_name = f"{' '.join(item_name[:-1])}" if len(item_name) > 2 else item_name[0]
 
     if the_item_name in item_dict:
         item_dict[the_item_name] += item_amout
