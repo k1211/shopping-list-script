@@ -25,14 +25,14 @@ def generate_shopping_list(menu_file_in_pdf):
 
         item_name = abc[0].split(' ')
         if len(abc) == 1:
-            print(f"Undisclosed item amout for: {abc[0]}")
+            print(f"Undisclosed item amount for: {abc[0]}")
             item_amount = 0
         else:
             item_amount = abc[1].split(' ')
             try:
                 item_amount = float(item_amount[1]) if len(item_amount) > 1 else 0
             except:
-                print(f"Unidetifiable item amout: {item_amount[1]}")
+                print(f"Unidentifiable item amount: {item_amount[1]}")
                 _item_amount = item_amount[1].replace('g', '')
                 item_amount = float(_item_amount) if len(item_amount) > 1 else 0
 
