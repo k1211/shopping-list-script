@@ -9,15 +9,8 @@ def parse_pdf_file_to_txt(pdf_file):
 
 def generate_shopping_list(menu_file_in_pdf):
     menu_file = parse_pdf_file_to_txt(menu_file_in_pdf)
-
     f = open(menu_file, "r", encoding='utf-8')
-    lines = f.readlines()
-    items = []
-
-    for line in lines:
-        if line.startswith('+'):
-            items.append(line.strip().strip('+ '))
-
+    items = [line.strip().strip('+ ') for line in f.readlines() if line.startswith('+')]
     item_dict = {}
 
     for item in items:
