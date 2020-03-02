@@ -2,6 +2,8 @@
 # generate shopping list from weekly menu from my dietitian
 ##############################################################
 
+import argparse
+
 
 def parse_pdf_file_to_txt(pdf_file):
     return 'week.txt'
@@ -41,7 +43,10 @@ def generate_shopping_list(menu_file_in_pdf):
 
 
 if __name__== "__main__":
-    file_name = input("Please enter file name: ")
-    print("You entered: " + file_name)
-    shopping_list = generate_shopping_list(str(file_name))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--file_name", "-f", default="week.txt", help="File name with extension name.")
+    args = parser.parse_args()
+
+    print(f"file name {args.file_name}")
+    shopping_list = generate_shopping_list(str(args.file_name))
     print(shopping_list)
