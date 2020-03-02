@@ -3,14 +3,22 @@
 ##############################################################
 
 import argparse
+import os
 
 
-def parse_pdf_file_to_txt(pdf_file):
-    return 'week.txt'
+def handle_menu_file(menu_file):
+    if os.path.isfile(menu_file):
+        if menu_file.find('.'):
+            file_name, extension = menu_file.split('.')
+            if extension == 'txt':
+                return menu_file
+            print(menu_file)
+            # TODO convert pdf file to txt
+    raise Exception(f"'{menu_file}' file does not exist in this directory!")
 
 
 def generate_shopping_list(menu_file_in_pdf):
-    menu_file = parse_pdf_file_to_txt(menu_file_in_pdf)
+    menu_file = handle_menu_file(menu_file_in_pdf)
     f = open(menu_file, "r", encoding='utf-8')
     items = [line.strip().strip('+ ') for line in f.readlines() if line.startswith('+')]
     item_dict = {}
@@ -46,7 +54,5 @@ if __name__== "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--file_name", "-f", default="week.txt", help="File name with extension name.")
     args = parser.parse_args()
-
-    print(f"file name {args.file_name}")
     shopping_list = generate_shopping_list(str(args.file_name))
     print(shopping_list)
